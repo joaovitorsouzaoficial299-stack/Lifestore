@@ -10,14 +10,25 @@ permissions:
 
 jobs:
   extract:
-    if: ${{ contains(github.event.head_commit.message, 'Extract Life Store ZIP') == false && hashFiles('life-store.zip') != '' }}
+    if: ${{ contains(github.event.head_commit.message, 'Extract Life Store ZIP') == false }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check for ZIP
+        id: zip
+        shell: bash
+        run: |
+          if [ -f life-store.zip ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Extract ZIP
+        if: steps.zip.outputs.exists == 'true'
         shell: bash
         run: |
           set -e
@@ -37,6 +48,7 @@ jobs:
           rm -f life-store.zip
 
       - name: Commit extracted project
+        if: steps.zip.outputs.exists == 'true'
         shell: bash
         run: |
           set -e
