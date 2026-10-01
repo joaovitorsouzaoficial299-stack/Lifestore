@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel administrativo — Life Store</title>
+<link rel="icon" href="../assets/img/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="../"><span class="mark" role="img" aria-label="Life Store"></span>Life Store</a>
+  <div class="toplinks"><a href="../">Ver site</a><a href="#" id="logout" hidden>Sair</a></div>
+</div></header>
+
+<main>
+<section><div class="wrap">
+  <h2>Painel administrativo</h2>
+  <p class="sub">Gerencie os produtos da loja: preços, estoque, imagens e visibilidade.</p>
+
+  <!-- Acesso: só aparece o painel para um administrador autenticado -->
+  <div id="gate" class="frame gate">
+    <h3>Acesso restrito</h3>
+    <p id="notconf" class="sub" hidden>O login do administrador ainda não foi configurado. Esta área será liberada quando o banco de dados for conectado (veja <code>docs/SUPABASE.md</code>).</p>
+    <form id="login" class="fm" hidden autocomplete="on">
+      <label>E-mail<input name="email" type="email" required autocomplete="username"></label>
+      <label>Senha<input name="senha" type="password" required autocomplete="current-password"></label>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <div id="panel" hidden>
+    <div class="atools">
+      <button class="btn" type="button" id="new">+ Novo produto</button>
+      <input id="q" type="search" placeholder="Buscar produto" aria-label="Buscar produto">
+      <select id="fcat" aria-label="Categoria"><option value="">Todas as categorias</option></select>
+      <select id="fst" aria-label="Status"><option value="">Todos</option><option value="1">Ativos</option><option value="0">Inativos</option></select>
+    </div>
+    <div class="agrid" id="alist"></div>
+  </div>
+</div></section>
+</main>
+
+<script type="module" src="../assets/js/admin/main.js"></script>
+</body>
+</html>

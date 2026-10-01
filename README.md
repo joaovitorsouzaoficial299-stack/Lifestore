@@ -1,4 +1,3 @@
-
 # Life Store — site + painel administrativo
 
 Site da **Life Store** (assistência técnica e loja de celulares, Anápolis - GO), pronto para GitHub + Vercel.

@@ -1,0 +1,173 @@
+{
+  "versao": 1,
+  "produtos": [
+    {
+      "id": "p1",
+      "nome": "JBL Boombox 3",
+      "cat": "Sons",
+      "det": "Caixa portátil à prova d'água",
+      "un": 2,
+      "cor": "#111",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p2",
+      "nome": "JBL Partybox",
+      "cat": "Sons",
+      "det": "Caixa com luzes",
+      "un": 1,
+      "cor": "#1a1a1a",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p3",
+      "nome": "iPhone 15",
+      "cat": "Aparelhos",
+      "det": "Rosa · 128 GB",
+      "un": 2,
+      "cor": "#e9b5c4",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p4",
+      "nome": "iPhone 14 Pro Max",
+      "cat": "Aparelhos",
+      "det": "Roxo profundo · 256 GB",
+      "un": 1,
+      "cor": "#4b3f6b",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p5",
+      "nome": "iPhone 13",
+      "cat": "Aparelhos",
+      "det": "Azul sierra · 128 GB",
+      "un": 3,
+      "cor": "#9db8d6",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p6",
+      "nome": "iPhone 12",
+      "cat": "Aparelhos",
+      "det": "Preto · 64 GB",
+      "un": 4,
+      "cor": "#2b2b2e",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p7",
+      "nome": "iPhone 11",
+      "cat": "Aparelhos",
+      "det": "Roxo · 64 GB",
+      "un": 2,
+      "cor": "#b7a6d9",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p8",
+      "nome": "iPhone XS",
+      "cat": "Aparelhos",
+      "det": "Dourado · 64 GB",
+      "un": 1,
+      "cor": "#d9c29a",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p9",
+      "nome": "Carregadores e cabos",
+      "cat": "Acessórios",
+      "det": "Consulte modelos",
+      "un": 12,
+      "cor": "#c19a4b",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p10",
+      "nome": "Capas e películas",
+      "cat": "Acessórios",
+      "det": "Vários modelos",
+      "un": 10,
+      "cor": "#2b2b2e",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p11",
+      "nome": "Fone TWS Basike",
+      "cat": "Fones",
+      "det": "Bluetooth sem fio · 4 h",
+      "un": 8,
+      "cor": "#f2f2f2",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p12",
+      "nome": "Headphone Bluetooth",
+      "cat": "Fones",
+      "det": "Over-ear sem fio",
+      "un": 3,
+      "cor": "#222",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p13",
+      "nome": "Smartwatch",
+      "cat": "Outros",
+      "det": "Relógio inteligente",
+      "un": 3,
+      "cor": "#222",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    },
+    {
+      "id": "p14",
+      "nome": "Power bank",
+      "cat": "Outros",
+      "det": "Bateria portátil",
+      "un": 5,
+      "cor": "#2b2b2e",
+      "preco": null,
+      "desc": 0,
+      "img": "",
+      "ativo": true
+    }
+  ]
+}
