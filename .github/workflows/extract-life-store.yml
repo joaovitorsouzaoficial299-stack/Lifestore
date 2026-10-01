@@ -1,0 +1,51 @@
+name: Extract Life Store ZIP
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    if: ${{ contains(github.event.head_commit.message, 'Extract Life Store ZIP') == false && hashFiles('life-store.zip') != '' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract ZIP
+        shell: bash
+        run: |
+          set -e
+          rm -rf /tmp/life-store-extracted
+          mkdir -p /tmp/life-store-extracted
+          unzip -q life-store.zip -d /tmp/life-store-extracted
+
+          entries=$(find /tmp/life-store-extracted -mindepth 1 -maxdepth 1 -printf '%f\n' | sort)
+          count=$(printf '%s\n' "$entries" | sed '/^$/d' | wc -l)
+
+          if [ "$count" -eq 1 ] && [ -d "/tmp/life-store-extracted/$entries" ]; then
+            rsync -a --exclude='.git' "/tmp/life-store-extracted/$entries/" ./
+          else
+            rsync -a --exclude='.git' /tmp/life-store-extracted/ ./
+          fi
+
+          rm -f life-store.zip
+
+      - name: Commit extracted project
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Extract Life Store ZIP"
+          git push
