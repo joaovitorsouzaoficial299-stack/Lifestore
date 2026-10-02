@@ -4,7 +4,6 @@ import { renderServices } from "./services.js";
 import { initStore, showLoadError } from "./store.js";
 import { initScrollEffects } from "./scroll-effects.js";
 import { initOrcamento } from "./orcamento.js";
-import { initIphone3D, gl } from "./iphone3d.js";
 import { initRouter } from "./router.js";
 
 async function boot() {
@@ -21,9 +20,7 @@ async function boot() {
   }
 
   const fx = initScrollEffects();
-  gl.onReady = fx.spin;
   initOrcamento();
-  initIphone3D();
   initRouter(fx);
 }
 
