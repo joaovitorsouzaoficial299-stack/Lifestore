@@ -236,7 +236,7 @@ header{background:rgba(243,229,173,.88)}
 .phone-silver img{filter:drop-shadow(0 30px 28px rgba(70,70,70,.25))}
 @media(max-width:820px){
  .phones-stage{min-height:430px}.phones-scroll{height:430px}
- .scroll-phone{width:245px;height:245px}
+ .scroll-phone{width:285px;height:285px}
 }
 
 /* ===== responsividade premium Life Store ===== */
@@ -256,7 +256,7 @@ header{background:rgba(243,229,173,.88)}
   .perks{justify-content:center;gap:10px 16px;margin-top:24px;font-size:12px}
   .phones-stage{width:100%;min-height:390px;margin-top:4px;overflow:visible}
   .phones-scroll{height:390px}
-  .scroll-phone{width:min(31vw,170px);height:min(31vw,170px);min-width:125px;min-height:125px}
+  .scroll-phone{width:min(43vw,205px);height:min(43vw,205px);min-width:150px;min-height:150px}
   section{padding:58px 0}
   .split{grid-template-columns:1fr;gap:28px}
   .grid{grid-template-columns:1fr;gap:14px}
@@ -278,7 +278,7 @@ header{background:rgba(243,229,173,.88)}
   .perks span:last-child{grid-column:1/-1}
   .phones-stage{min-height:330px}
   .phones-scroll{height:330px}
-  .scroll-phone{width:128px;height:128px;min-width:0;min-height:0}
+  .scroll-phone{width:190px;height:190px;min-width:0;min-height:0}
   h2{font-size:clamp(34px,10vw,44px)}
   .sub{font-size:14px}
   .fm input,.fm textarea,.fm select{font-size:16px}
