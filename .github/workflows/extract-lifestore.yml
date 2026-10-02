@@ -6,6 +6,7 @@ on:
     paths:
       - "life-store.zip"
       - "lifestore.zip"
+      - "extract-trigger.txt"
 
 permissions:
   contents: write
