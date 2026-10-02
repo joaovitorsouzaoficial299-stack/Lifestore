@@ -1,13 +1,26 @@
-import { gl } from "./iphone3d.js";
-
 /** Efeitos ligados à rolagem: revelar blocos, girar o iPhone e animar os cards de serviços. */
 export function initScrollEffects() {
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-// iPhone gira 360° enquanto o início rola para cima
-const ph=document.getElementById("ph3d");
-function spin(){const h=document.querySelector(".hero");const r=Math.max(h.offsetHeight-90,1);const p=Math.min(Math.max(scrollY/r,0),1);ph.style.transform=`rotateX(-6deg) rotateY(${-25+p*360}deg)`;gl.lastP=p;if(gl.ready)gl.draw(p)}
-addEventListener("scroll",spin,{passive:true});addEventListener("resize",spin);
+// Três iPhones avançam/recuam suavemente conforme a rolagem do hero.
+const phones=document.querySelectorAll(".scroll-phone");
+function spin(){
+ const h=document.querySelector(".hero"); if(!h)return;
+ const r=Math.max(h.offsetHeight-90,1);
+ const p=Math.min(Math.max(scrollY/r,0),1);
+ phones.forEach((phone,i)=>{
+   const side=i===0?-1:i===2?1:0;
+   const depth=i===1?0:-1;
+   const x=(side*(120-95*p));
+   const y=(i===1?-4*p:8-8*p);
+   const z=depth*(90-75*p);
+   const rot=side*(18-16*p);
+   const scale=i===1?(1+.10*p):(.88+.12*p);
+   phone.style.transform=`translate3d(${x}px,${y}px,${z}px) rotateY(${rot}deg) scale(${scale})`;
+   phone.style.opacity=.72+.28*p;
+ });
+}
+addEventListener("scroll",spin,{passive:true});addEventListener("resize",spin);spin();
 // Assistência técnica: os cards se movem conforme a rolagem
 const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
 function svScroll(){
