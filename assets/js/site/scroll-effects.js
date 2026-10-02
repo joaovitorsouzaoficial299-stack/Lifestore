@@ -1,6 +1,16 @@
-/** Efeitos ligados à rolagem: revelar blocos, girar o iPhone e animar os cards de serviços. */
+/** Efeitos de rolagem e revelação dos blocos. */
 export function initScrollEffects() {
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-return { io, spin, svScroll };
+  const io = new IntersectionObserver(
+    entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("on");
+        io.unobserve(entry.target);
+      }
+    }),
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+  return { io };
 }
