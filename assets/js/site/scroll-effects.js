@@ -1,13 +1,7 @@
-import { gl } from "./iphone3d.js";
-
 /** Efeitos ligados à rolagem: revelar blocos, girar o iPhone e animar os cards de serviços. */
 export function initScrollEffects() {
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-// iPhone gira 360° enquanto o início rola para cima
-const ph=document.getElementById("ph3d");
-function spin(){const h=document.querySelector(".hero");const r=Math.max(h.offsetHeight-90,1);const p=Math.min(Math.max(scrollY/r,0),1);ph.style.transform=`rotateX(-6deg) rotateY(${-25+p*360}deg)`;gl.lastP=p;if(gl.ready)gl.draw(p)}
-addEventListener("scroll",spin,{passive:true});addEventListener("resize",spin);
 // Assistência técnica: os cards se movem conforme a rolagem
 const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
 function svScroll(){
