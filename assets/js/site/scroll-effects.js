@@ -11,14 +11,14 @@ function spin(){
  phones.forEach((phone,i)=>{
    const mobile = innerWidth <= 820;
    const verySmall = innerWidth <= 480;
-   const spread = verySmall ? Math.min(72, innerWidth * .18) : mobile ? Math.min(105, innerWidth * .22) : 120;
+   const spread = verySmall ? Math.min(38, innerWidth * .09) : mobile ? Math.min(58, innerWidth * .12) : 120;
    const side=i===0?-1:i===2?1:0;
    const depth=i===1?0:-1;
    const x=(side*(spread-(spread*.78)*p));
    const y=(i===1?-4*p:8-8*p);
    const z=depth*(mobile?45:90-(75*p));
    const rot=side*(mobile?10:18-16*p);
-   const scale=i===1?(mobile ? .96+.08*p : 1+.10*p):(mobile ? .78+.12*p : .88+.12*p);
+   const scale=i===1?(mobile ? 1.16+.10*p : 1+.10*p):(mobile ? 1.02+.12*p : .88+.12*p);
    phone.style.transform=`translate3d(${x}px,${y}px,${z}px) rotateY(${rot}deg) scale(${scale})`;
    phone.style.opacity=.78+.22*p;
  });
