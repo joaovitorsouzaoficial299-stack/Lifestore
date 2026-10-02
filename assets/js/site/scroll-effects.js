@@ -9,15 +9,18 @@ function spin(){
  const r=Math.max(h.offsetHeight*1.8-90,1);
  const p=Math.min(Math.max(scrollY/r,0),1);
  phones.forEach((phone,i)=>{
+   const mobile = innerWidth <= 820;
+   const verySmall = innerWidth <= 480;
+   const spread = verySmall ? Math.min(72, innerWidth * .18) : mobile ? Math.min(105, innerWidth * .22) : 120;
    const side=i===0?-1:i===2?1:0;
    const depth=i===1?0:-1;
-   const x=(side*(120-95*p));
+   const x=(side*(spread-(spread*.78)*p));
    const y=(i===1?-4*p:8-8*p);
-   const z=depth*(90-75*p);
-   const rot=side*(18-16*p);
-   const scale=i===1?(1+.10*p):(.88+.12*p);
+   const z=depth*(mobile?45:90-(75*p));
+   const rot=side*(mobile?10:18-16*p);
+   const scale=i===1?(mobile ? .96+.08*p : 1+.10*p):(mobile ? .78+.12*p : .88+.12*p);
    phone.style.transform=`translate3d(${x}px,${y}px,${z}px) rotateY(${rot}deg) scale(${scale})`;
-   phone.style.opacity=.72+.28*p;
+   phone.style.opacity=.78+.22*p;
  });
 }
 addEventListener("scroll",spin,{passive:true});addEventListener("resize",spin);spin();
