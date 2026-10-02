@@ -1,0 +1,73 @@
+name: Extrair Life Store
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "life-store.zip"
+      - "lifestore.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Encontrar ZIP
+        id: zip
+        shell: bash
+        run: |
+          if [ -f "life-store.zip" ]; then
+            echo "file=life-store.zip" >> "$GITHUB_OUTPUT"
+          elif [ -f "lifestore.zip" ]; then
+            echo "file=lifestore.zip" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nenhum ZIP do Life Store foi encontrado na raiz do repositório."
+            exit 1
+          fi
+
+      - name: Extrair Life Store
+        shell: bash
+        run: |
+          rm -rf .lifestore_extract
+          mkdir -p .lifestore_extract
+          unzip -q "${{ steps.zip.outputs.file }}" -d .lifestore_extract
+
+          # Se o ZIP tiver uma única pasta raiz, usa o conteúdo dela.
+          shopt -s dotglob nullglob
+          items=(.lifestore_extract/*)
+
+          if [ "${#items[@]}" -eq 1 ] && [ -d "${items[0]}" ]; then
+            root="${items[0]}"
+            cp -a "${root}"/. .
+          else
+            cp -a .lifestore_extract/. .
+          fi
+
+          rm -rf .lifestore_extract
+
+      - name: Remover ZIP após extração
+        shell: bash
+        run: |
+          rm -f "life-store.zip" "lifestore.zip"
+
+      - name: Commitar arquivos extraídos
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração para commitar."
+            exit 0
+          fi
+
+          git commit -m "Extrair projeto Life Store"
+          git push
