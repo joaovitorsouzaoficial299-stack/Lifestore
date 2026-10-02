@@ -6,7 +6,7 @@ document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 const phones=document.querySelectorAll(".scroll-phone");
 function spin(){
  const h=document.querySelector(".hero"); if(!h)return;
- const r=Math.max(h.offsetHeight-90,1);
+ const r=Math.max(h.offsetHeight*1.8-90,1);
  const p=Math.min(Math.max(scrollY/r,0),1);
  phones.forEach((phone,i)=>{
    const side=i===0?-1:i===2?1:0;
