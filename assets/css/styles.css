@@ -308,3 +308,234 @@ header{background:rgba(243,229,173,.88)}
   .hero-photo-badge{left:14px;bottom:14px}
   .hero-photo-badge strong{font-size:19px}
 }
+
+
+/* ===== redesign Life Store: oficina técnica / assistência premium ===== */
+:root{
+  --bg:#0a0d10;
+  --bg2:#101419;
+  --card:#151a1f;
+  --gold:#d5a83b;
+  --gold2:#f1cf72;
+  --line:rgba(213,168,59,.28);
+  --txt:#f4f5f6;
+  --mut:#9aa2aa;
+}
+body{
+  background:
+    radial-gradient(circle at 15% 20%,rgba(213,168,59,.07),transparent 28%),
+    radial-gradient(circle at 85% 70%,rgba(75,92,110,.08),transparent 30%),
+    var(--bg);
+}
+header{
+  background:rgba(8,11,14,.94);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.logo{letter-spacing:.02em}
+.mark{border-color:var(--gold);box-shadow:0 0 18px rgba(213,168,59,.12)}
+nav{color:#8f98a1}
+nav a{transition:color .2s}
+nav a:hover{color:var(--gold2)}
+
+/* Hero com linguagem visual de bancada eletrônica */
+.hero{
+  padding:76px 0 86px;
+  background:
+    linear-gradient(rgba(10,13,16,.88),rgba(10,13,16,.94)),
+    repeating-linear-gradient(0deg,transparent 0,transparent 59px,rgba(255,255,255,.035) 60px),
+    repeating-linear-gradient(90deg,transparent 0,transparent 59px,rgba(255,255,255,.035) 60px),
+    radial-gradient(circle at 78% 38%,rgba(213,168,59,.16),transparent 34%),
+    #0a0d10 !important;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(115deg,transparent 0 46%,rgba(213,168,59,.055) 46.2%,transparent 46.5%),
+    linear-gradient(295deg,transparent 0 70%,rgba(255,255,255,.025) 70.2%,transparent 70.5%);
+  animation:techSweep 12s ease-in-out infinite alternate;
+}
+@keyframes techSweep{
+  from{transform:translateX(-2%)}
+  to{transform:translateX(2%)}
+}
+.hero .wrap{z-index:2}
+.hero h1{letter-spacing:-.035em}
+.hero h1 span{color:var(--gold2)}
+.hero p{color:#b1b7bd}
+.hero .cta{margin-top:4px}
+.perks{color:#858e97}
+.perks span{
+  position:relative;
+  padding-left:14px;
+}
+.perks span::before{
+  content:"";
+  position:absolute;
+  left:0;top:.65em;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 9px rgba(213,168,59,.7);
+}
+
+/* Remove o visual "liquid glass" genérico dos CTAs */
+.btn,.tab,.arrows button{
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+  text-shadow:none;
+  border-radius:8px;
+  background:#d5a83b;
+  color:#111 !important;
+  border:1px solid #edc865;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.btn::before,.btn::after,.tab::before,.tab::after,.arrows button::before,.arrows button::after{display:none}
+.btn:hover{
+  background:#f1cf72;
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(0,0,0,.32),0 0 20px rgba(213,168,59,.15);
+}
+.btn.ghost{
+  background:rgba(255,255,255,.035);
+  color:#eef0f2 !important;
+  border-color:rgba(255,255,255,.18);
+}
+.btn.ghost:hover{background:rgba(255,255,255,.08);color:#fff !important}
+.tab{
+  border-radius:6px;
+  background:#151a1f;
+  color:#aab1b8 !important;
+  border-color:rgba(255,255,255,.1);
+  box-shadow:none;
+}
+.tab:hover,.arrows button:hover{background:#20262d;color:#fff !important}
+.tab[aria-pressed=true]{
+  background:var(--gold);
+  color:#111 !important;
+  border-color:var(--gold2);
+  box-shadow:none;
+}
+
+/* Foto da assistência: mais editorial e menos "card de IA" */
+.hero-photo{
+  min-height:455px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#11161b;
+  box-shadow:0 28px 70px rgba(0,0,0,.42);
+}
+.hero-photo::before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(213,168,59,.25);
+  z-index:1;
+  pointer-events:none;
+}
+.hero-photo::after{
+  background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34)) !important;
+}
+.hero-photo img{
+  min-height:455px;
+  filter:saturate(.82) contrast(1.08);
+}
+.hero-photo-badge{
+  left:28px;
+  bottom:28px;
+  border-radius:4px;
+  padding:10px 13px;
+  background:rgba(8,11,14,.88);
+  border:1px solid rgba(213,168,59,.35);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  backdrop-filter:none;
+}
+.hero-photo-badge strong{color:#f4f5f6}
+
+/* Textura técnica nas seções */
+section{
+  position:relative;
+}
+section:not(.stock)::before{
+  content:"";
+  position:absolute;
+  top:0;left:50%;
+  width:min(1180px,calc(100% - 40px));
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(213,168,59,.22),transparent);
+}
+.frame,.item,.step{
+  border-radius:8px;
+  background:#12171c;
+  border-color:rgba(255,255,255,.09);
+  box-shadow:0 14px 38px rgba(0,0,0,.22);
+}
+.frame::before,.frame::after{border-color:rgba(213,168,59,.55)}
+.frame:hover{
+  border-color:rgba(213,168,59,.32);
+  transform:translateY(-3px);
+  transition:transform .25s,border-color .25s;
+}
+.stock{
+  background:
+    linear-gradient(rgba(16,20,25,.94),rgba(16,20,25,.97)),
+    repeating-linear-gradient(90deg,transparent 0,transparent 59px,rgba(255,255,255,.025) 60px);
+  border-block-color:rgba(255,255,255,.08);
+}
+.step{border-left:2px solid var(--gold)}
+.item{border-radius:8px}
+.item:hover{transform:translateY(-5px)}
+.item .pic{background:radial-gradient(circle at 50% 40%,rgba(213,168,59,.13),transparent 68%),#0d1115}
+.fm input,.fm textarea,.fm select{
+  background:#0e1317;
+  border-color:rgba(255,255,255,.12);
+  color:#f4f5f6;
+  box-shadow:none;
+  border-radius:7px;
+}
+.fm input:focus,.fm textarea:focus,.fm select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(213,168,59,.12);
+}
+.chips .tab{border-radius:5px}
+.back{color:var(--gold2)}
+footer{
+  background:#080a0d;
+  border-top-color:rgba(255,255,255,.08);
+}
+
+/* Pequenos elementos técnicos animados */
+.hero .ring{
+  display:block !important;
+  width:520px;height:520px;
+  right:-190px;top:-150px;
+  border:1px solid rgba(213,168,59,.14);
+  animation:spin 90s linear infinite;
+  opacity:.8;
+}
+.hero .ring::before{
+  content:"";
+  position:absolute;
+  inset:34px;
+  border:1px dashed rgba(255,255,255,.08);
+  border-radius:50%;
+}
+.hero .ring::after{
+  width:8px;height:8px;
+  top:18px;
+  background:var(--gold2);
+  box-shadow:0 0 14px rgba(241,207,114,.75);
+}
+@media(max-width:820px){
+  .hero{padding:48px 0 58px}
+  .hero-photo{min-height:310px}
+  .hero-photo img{min-height:310px}
+  .hero-photo::before{inset:9px}
+  .hero-photo-badge{left:20px;bottom:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero::before,.hero .ring{animation:none!important}
+}
