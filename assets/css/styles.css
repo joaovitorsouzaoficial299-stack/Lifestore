@@ -539,3 +539,35 @@ footer{
 @media(prefers-reduced-motion:reduce){
   .hero::before,.hero .ring{animation:none!important}
 }
+
+/* Correção: categorias da Loja não podem encolher/cortar palavras.
+   Mantém rolagem horizontal no mobile sem afetar a responsividade. */
+#tabs{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+#tabs .tab{
+  flex:0 0 auto;
+  width:max-content;
+  min-width:max-content;
+  max-width:none;
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:clip;
+}
+@media (max-width:600px){
+  #tabs{
+    flex-wrap:nowrap;
+    width:100%;
+    max-width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:2px 2px 8px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  #tabs .tab{flex:0 0 auto;}
+}
