@@ -6,7 +6,7 @@
 <title>TechFix Assistência | Conserto de celular, notebook e tablet</title>
 <meta name="description" content="Conserto de celular, notebook, tablet e computador com garantia de 90 dias. Diagnóstico grátis e orçamento pelo WhatsApp.">
 <meta name="theme-color" content="#071733">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
@@ -16,16 +16,17 @@
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
 <header class="nav" id="topo">
-  <a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span data-site="nome"></span></a>
+  <a class="brand" href="#topo" aria-label="TechFix, início"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M18.4 3 7 17.1h7.1L12.7 29 25 13.8h-7.4L18.4 3Z" fill="currentColor"/></svg></span><span data-site="nome"></span></a>
   <nav id="menu" aria-label="Principal">
     <a href="#orcamento">Orçamento</a>
     <a href="#por-dentro">Por dentro</a>
     <a href="#servicos">Serviços</a>
+    <a href="#loja">Loja <span class="nav-deal">OFERTAS</span></a>
     <a href="#processo">Como funciona</a>
     <a href="#duvidas">Dúvidas</a>
     <a href="#contato">Contato</a>
   </nav>
-  <a class="btn btn-sm btn-light" href="#orcamento">Pedir orçamento</a>
+  <a class="btn btn-sm btn-shop" href="#loja"><span aria-hidden="true">↗</span> Ver ofertas</a>
   <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span></button>
 </header>
 
@@ -38,6 +39,8 @@
         <p class="status" id="status"><i></i><span></span></p>
         <h1 data-site="slogan"></h1>
         <p class="lead" data-site="descricao"></p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#orcamento">Solicitar diagnóstico <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="#loja"><span aria-hidden="true">▦</span> Explorar a loja</a></div>
+        <div class="hero-proof"><span class="proof-orb">✦</span><span><b>Seu aparelho em boas mãos</b><small>Atendimento direto, sem complicação.</small></span></div>
         <ul class="trust" id="trust"></ul>
       </div>
 
@@ -134,6 +137,25 @@
     </div>
     <div class="tabs" id="tabs" role="tablist" aria-label="Tipo de aparelho"></div>
     <ul class="svc" id="svcList"></ul>
+  </section>
+
+
+  <!-- LOJA DEMONSTRATIVA -->
+  <section class="shop-section" id="loja" aria-labelledby="shopTitle">
+    <div class="wrap shop-wrap">
+      <div class="shop-topline"><span class="eyebrow"><i></i> TECHFIX STORE / VITRINE DEMO</span><span class="demo-note">Produtos e preços ilustrativos</span></div>
+      <div class="shop-heading"><div class="sec-head"><h2 id="shopTitle">Pequenos upgrades.<br><span>Grandes diferenças.</span></h2><p>Acessórios selecionados para proteger, carregar e aproveitar melhor seu aparelho.</p></div><div class="shop-promo"><span class="promo-spark">✦</span><div><b>OFERTAS DA SEMANA</b><small>Peça pelo WhatsApp em poucos cliques</small></div><span class="promo-arrow">↗</span></div></div>
+      <div class="shop-filters" role="group" aria-label="Filtrar produtos"><button class="filter-chip active" type="button" data-filter="todos">Todos os produtos</button><button class="filter-chip" type="button" data-filter="protecao">Proteção</button><button class="filter-chip" type="button" data-filter="energia">Energia</button><button class="filter-chip" type="button" data-filter="audio">Áudio</button></div>
+      <div class="product-grid" id="shopGrid">
+        <article class="product-card" data-category="protecao"><div class="product-art art-case"><span class="product-tag">MAIS VENDIDO</span><span class="art-icon">▣</span><span class="art-caption">ARMOR / 360°</span></div><div class="product-info"><div class="product-category">PROTEÇÃO · CAPA</div><h3>Capa Armor Shockproof</h3><p>Proteção reforçada com acabamento premium.</p><div class="price-line"><del>R$ 89,90</del><span class="discount">-33%</span></div><div class="price-now"><strong>R$ 59,90</strong><small>ou 3x de R$ 19,97</small></div><button class="product-buy" type="button" data-product="Capa Armor Shockproof" data-price="R$ 59,90">Quero essa oferta <span>↗</span></button></div></article>
+        <article class="product-card" data-category="protecao"><div class="product-art art-glass"><span class="product-tag">PREÇO ESPECIAL</span><span class="art-icon">◇</span><span class="art-caption">CLEAR / GLASS</span></div><div class="product-info"><div class="product-category">PROTEÇÃO · TELA</div><h3>Película 3D Premium</h3><p>Mais proteção para o uso do dia a dia.</p><div class="price-line"><del>R$ 49,90</del><span class="discount">-40%</span></div><div class="price-now"><strong>R$ 29,90</strong><small>instalação demonstrativa</small></div><button class="product-buy" type="button" data-product="Película 3D Premium" data-price="R$ 29,90">Quero essa oferta <span>↗</span></button></div></article>
+        <article class="product-card" data-category="energia"><div class="product-art art-charger"><span class="product-tag">OFERTA RELÂMPAGO</span><span class="art-icon">ϟ</span><span class="art-caption">FAST CHARGE / 20W</span></div><div class="product-info"><div class="product-category">ENERGIA · CARREGADOR</div><h3>Carregador Turbo USB‑C</h3><p>Carregamento rápido para aparelhos compatíveis.</p><div class="price-line"><del>R$ 119,90</del><span class="discount">-25%</span></div><div class="price-now"><strong>R$ 89,90</strong><small>cabo vendido à parte</small></div><button class="product-buy" type="button" data-product="Carregador Turbo USB-C" data-price="R$ 89,90">Quero essa oferta <span>↗</span></button></div></article>
+        <article class="product-card" data-category="energia"><div class="product-art art-cable"><span class="art-icon">⌁</span><span class="art-caption">FLEX / DURABLE</span></div><div class="product-info"><div class="product-category">ENERGIA · CABO</div><h3>Cabo Reforçado USB‑C</h3><p>Revestimento resistente para sua rotina.</p><div class="price-line"><del>R$ 39,90</del><span class="discount">-25%</span></div><div class="price-now"><strong>R$ 29,90</strong><small>1 metro · demonstrativo</small></div><button class="product-buy" type="button" data-product="Cabo Reforçado USB-C" data-price="R$ 29,90">Quero essa oferta <span>↗</span></button></div></article>
+        <article class="product-card" data-category="audio"><div class="product-art art-earbuds"><span class="product-tag">DESTAQUE</span><span class="art-icon">♫</span><span class="art-caption">AIR / WIRELESS</span></div><div class="product-info"><div class="product-category">ÁUDIO · BLUETOOTH</div><h3>Fone Bluetooth Compact</h3><p>Design compacto para música e chamadas.</p><div class="price-line"><del>R$ 159,90</del><span class="discount">-31%</span></div><div class="price-now"><strong>R$ 109,90</strong><small>estoque demonstrativo</small></div><button class="product-buy" type="button" data-product="Fone Bluetooth Compact" data-price="R$ 109,90">Quero essa oferta <span>↗</span></button></div></article>
+        <article class="product-card" data-category="protecao"><div class="product-art art-stand"><span class="art-icon">◫</span><span class="art-caption">DESK / MAGNETIC</span></div><div class="product-info"><div class="product-category">ACESSÓRIOS · SUPORTE</div><h3>Suporte Magnético</h3><p>Mais praticidade na mesa ou no carro.</p><div class="price-line"><del>R$ 69,90</del><span class="discount">-29%</span></div><div class="price-now"><strong>R$ 49,90</strong><small>modelo ilustrativo</small></div><button class="product-buy" type="button" data-product="Suporte Magnético" data-price="R$ 49,90">Quero essa oferta <span>↗</span></button></div></article>
+      </div>
+      <div class="shop-bottom"><span class="secure-mark">✓</span><p><b>Comprou, falou, resolveu.</b><br>Consulte compatibilidade, disponibilidade e formas de pagamento pelo WhatsApp.</p><a href="#contato">Falar com a equipe <span>↗</span></a></div>
+    </div>
   </section>
 
   <!-- DIFERENCIAIS -->
