@@ -165,7 +165,7 @@
   }
 
   /* ---------- Scroll reveal suave, respeitando acessibilidade ---------- */
-  const revealTargets = $('.sec-head, .svc li, .diff li, .proc li, .quotes blockquote, #faq details, .product-card, .contact-in > div, .shop-bottom');
+  const revealTargets = $$('.sec-head, .svc li, .diff li, .proc li, .quotes blockquote, #faq details, .product-card, .contact-in > div, .shop-bottom');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let revealObserver = null;
   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -194,7 +194,7 @@
   });
   $('#svcList').addEventListener('click', e => { const b = e.target.closest('.orcar'); if (b) setQuote(tab, b.dataset.n); });
   renderSvc();
-  if (revealObserver) $('.svc li', $('#svcList')).forEach(el => { el.classList.add('reveal'); revealObserver.observe(el); });
+  if (revealObserver) $$('.svc li', $('#svcList')).forEach(el => { el.classList.add('reveal'); revealObserver.observe(el); });
 
   /* ---------- Processo (linha que avança com a rolagem) ---------- */
   $('#proc').innerHTML = S.processo.map(p => `<li><h3>${p.t}</h3><p>${p.d}</p></li>`).join('');
@@ -214,7 +214,7 @@
   const stage = $('#por-dentro'), scene = $('#scene'), view = $('#stView');
   const layers = $('.layer', scene);               // índice 0 = carcaça ... 4 = vidro
   // Se uma imagem externa falhar, reativa o desenho CSS da peça em vez de deixar um buraco.
-  $('.part-photo', scene).forEach(img => img.addEventListener('error', () => {
+  $$('.part-photo', scene).forEach(img => img.addEventListener('error', () => {
     img.hidden = true;
     const layer = img.closest('.layer');
     if (layer) layer.classList.add('photo-fallback');
