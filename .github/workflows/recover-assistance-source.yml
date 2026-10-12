@@ -1,0 +1,38 @@
+name: Recover assistance website source
+
+on:
+  push:
+    branches:
+      - realistic-por-dentro
+    paths:
+      - .github/workflows/recover-assistance-source.yml
+
+permissions:
+  contents: write
+
+jobs:
+  extract-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+        with:
+          ref: realistic-por-dentro
+          persist-credentials: true
+
+      - name: Extract original website ZIP
+        run: |
+          test -f assistencia.zip
+          unzip -o assistencia.zip -d .
+          test -f index.html
+          test -f css/style.css
+          test -f js/main.js
+          test -f js/config.js
+
+      - name: Commit recovered source files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets css js
+          git diff --cached --quiet || git commit -m "Recover assistance website source from original ZIP"
+          git push origin realistic-por-dentro
