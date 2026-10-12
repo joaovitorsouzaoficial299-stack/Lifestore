@@ -85,6 +85,39 @@
   });
   renderDevs(); fillProb();
 
+
+  /* ---------- Loja demonstrativa: filtros + pedido pelo WhatsApp ---------- */
+  const shopGrid = $('#shopGrid');
+  if (shopGrid) {
+    const filters = $('.filter-chip');
+    filters.forEach(btn => btn.addEventListener('click', () => {
+      filters.forEach(f => f.classList.toggle('active', f === btn));
+      $('.product-card', shopGrid).forEach(card => {
+        card.hidden = btn.dataset.filter !== 'todos' && card.dataset.category !== btn.dataset.filter;
+      });
+    }));
+    shopGrid.addEventListener('click', e => {
+      const btn = e.target.closest('[data-product]');
+      if (!btn) return;
+      const msg = `Olá! Vim pela loja demonstrativa da ${S.nome} e tenho interesse em: ${btn.dataset.product} — valor exibido: ${btn.dataset.price}. Pode confirmar disponibilidade, compatibilidade e preço atualizado?`;
+      window.open(waLink(msg), '_blank', 'noopener');
+    });
+  }
+
+  /* ---------- Scroll reveal suave, respeitando acessibilidade ---------- */
+  const revealTargets = $('.sec-head, .svc li, .diff li, .proc li, .quotes blockquote, #faq details, .product-card, .contact-in > div, .shop-bottom');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    revealTargets.forEach((el, i) => {
+      el.classList.add('reveal');
+      if (el.classList.contains('product-card')) el.style.setProperty('--delay', (i % 3) * 70 + 'ms');
+    });
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+    revealTargets.forEach(el => revealObserver.observe(el));
+  }
+
   /* ---------- Serviços ---------- */
   let tab = devs[0];
   $('#tabs').innerHTML = devs.map(d => `<button class="tab" role="tab" data-t="${d}" aria-selected="${d === tab}">${d}</button>`).join('');
