@@ -212,7 +212,13 @@
      Rolando de volta, p diminui e as peças se encaixam de novo.
      ========================================================== */
   const stage = $('#por-dentro'), scene = $('#scene'), view = $('#stView');
-  const layers = $$('.layer', scene);               // índice 0 = carcaça ... 4 = vidro
+  const layers = $('.layer', scene);               // índice 0 = carcaça ... 4 = vidro
+  // Se uma imagem externa falhar, reativa o desenho CSS da peça em vez de deixar um buraco.
+  $('.part-photo', scene).forEach(img => img.addEventListener('error', () => {
+    img.hidden = true;
+    const layer = img.closest('.layer');
+    if (layer) layer.classList.add('photo-fallback');
+  }, { once: true }));
   const GAP = 118;                                  // distância final entre as peças (px)
   const START = { 4: .06, 3: .16, 2: .26, 1: .36 }; // quando cada peça começa a subir
   const DUR = .30;                                  // duração do movimento de cada peça
