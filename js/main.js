@@ -149,10 +149,10 @@
   /* ---------- Loja demonstrativa: filtros + pedido pelo WhatsApp ---------- */
   const shopGrid = $('#shopGrid');
   if (shopGrid) {
-    const filters = $('.filter-chip');
+    const filters = $$('.filter-chip');
     filters.forEach(btn => btn.addEventListener('click', () => {
       filters.forEach(f => f.classList.toggle('active', f === btn));
-      $('.product-card', shopGrid).forEach(card => {
+      $$('.product-card', shopGrid).forEach(card => {
         card.hidden = btn.dataset.filter !== 'todos' && card.dataset.category !== btn.dataset.filter;
       });
     }));
@@ -212,7 +212,7 @@
      Rolando de volta, p diminui e as peças se encaixam de novo.
      ========================================================== */
   const stage = $('#por-dentro'), scene = $('#scene'), view = $('#stView');
-  const layers = $('.layer', scene);               // índice 0 = carcaça ... 4 = vidro
+  const layers = $$('.layer', scene);               // índice 0 = carcaça ... 4 = vidro
   // Se uma imagem externa falhar, reativa o desenho CSS da peça em vez de deixar um buraco.
   $$('.part-photo', scene).forEach(img => img.addEventListener('error', () => {
     img.hidden = true;
