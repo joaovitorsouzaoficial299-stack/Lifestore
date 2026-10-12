@@ -35,4 +35,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html assets css js
           git diff --cached --quiet || git commit -m "Recover assistance website source from original ZIP"
+          git pull --rebase origin realistic-por-dentro
           git push origin realistic-por-dentro
