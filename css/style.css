@@ -372,3 +372,16 @@ main{position:relative;z-index:1}
 .contact{background:radial-gradient(ellipse at 85% 20%,rgba(91,124,255,.16),transparent 45%),rgba(7,10,18,.86)}
 @media(max-width:760px){.stage-sticky{background:radial-gradient(ellipse at 70% 40%,rgba(91,124,255,.16),transparent 45%),linear-gradient(rgba(126,148,255,.035) 1px,transparent 1px) 0 0/36px 36px,linear-gradient(90deg,rgba(126,148,255,.035) 1px,transparent 1px) 0 0/36px 36px,rgba(6,9,19,.88)}}
 @media(prefers-reduced-motion:reduce){.ambient-canvas{opacity:.45}}
+
+
+/* Fallback das peças: a animação nunca depende das imagens externas */
+.l-case.photo-fallback{background:linear-gradient(145deg,#303b53,#0e1422);border:2px solid #455574}
+.l-case.photo-fallback .cam,.l-case.photo-fallback .logo,.l-case.photo-fallback .ant,.l-case.photo-fallback .scr{display:block}
+.l-battery.photo-fallback{background:linear-gradient(160deg,#e6ebf5,#8492ab 60%,#bdc7da);border:2px solid rgba(255,255,255,.45)}
+.l-battery.photo-fallback .bt-label,.l-battery.photo-fallback .bt-plus,.l-battery.photo-fallback .bt-minus,.l-battery.photo-fallback .bt-strip{display:block}
+.l-board.photo-fallback{background:radial-gradient(circle at 20% 12%,rgba(255,255,255,.1),transparent 42%),repeating-linear-gradient(0deg,rgba(214,178,70,.16) 0 1px,transparent 1px 9px),repeating-linear-gradient(90deg,rgba(214,178,70,.12) 0 1px,transparent 1px 13px),#0b4a47;border:2px solid #1d7a74}
+.l-board.photo-fallback .chip,.l-board.photo-fallback .lens,.l-board.photo-fallback .port{display:grid}
+.l-display.photo-fallback{background:#050810;border:2px solid #222d4a}
+.l-display.photo-fallback .screen{display:block}
+.l-glass.photo-fallback{background:linear-gradient(120deg,rgba(255,255,255,.34),rgba(255,255,255,.03) 60%,rgba(255,255,255,.24));border:2px solid rgba(255,255,255,.6)}
+.l-glass.photo-fallback .notch{display:block}.l-glass.photo-fallback .crack{display:block;opacity:.7}
