@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - realistic-por-dentro
-    paths:
-      - .github/workflows/recover-assistance-source.yml
 
 permissions:
   contents: write
