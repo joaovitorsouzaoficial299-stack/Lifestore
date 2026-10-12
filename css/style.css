@@ -235,3 +235,103 @@ address{font-style:normal;color:#bccbe8;font-size:1.1rem}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+
+/* ==========================================================
+   POR DENTRO — peças fotográficas reais
+   Mantém a geometria, os frames e a animação original do scroll.
+   Imagens externas são referências visuais; substituir por
+   material próprio/licenciado antes de entregar a um cliente.
+   ========================================================== */
+.stage-sticky{
+  color:#0b1b3a;
+  background:
+    radial-gradient(55% 55% at 72% 55%,rgba(47,139,255,.15),transparent 72%),
+    linear-gradient(rgba(23,105,224,.055) 1px,transparent 1px) 0 0/44px 44px,
+    linear-gradient(90deg,rgba(23,105,224,.055) 1px,transparent 1px) 0 0/44px 44px,
+    #f3f6fa;
+}
+.st-cap h2{color:#1769e0}
+.st-now h3{color:#0b1b3a}
+.st-now p{color:#53627f}
+.st-list button{border-left-color:rgba(11,27,58,.18);color:#53627f}
+.st-list button:hover,.st-list button.on{color:#0b1b3a}
+.st-list button.on{border-color:#19d3ff}
+.glow{background:radial-gradient(closest-side,rgba(25,135,255,.17),transparent);filter:blur(12px)}
+.shadow{background:rgba(16,32,58,.18);filter:blur(30px)}
+.hint{color:#263b5c}
+.hint span{border-color:#1769e0}
+
+.part-photo{
+  position:absolute;
+  display:block;
+  max-width:none;
+  height:auto;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.l-case,.l-battery,.l-board,.l-display,.l-glass{
+  background-color:#f3f6fa;
+  border:1px solid rgba(24,43,72,.08);
+  box-shadow:0 12px 30px rgba(15,35,65,.13);
+}
+.l-case{overflow:hidden;background-image:none;border:0}
+.l-case .case-photo{
+  width:200%;height:100%;left:-50%;top:0;
+  object-fit:cover;object-position:center;
+}
+.l-case .cam,.l-case .logo,.l-case .ant,.l-case .scr{display:none}
+.l-battery{
+  overflow:hidden;border:0;border-radius:16px;background-image:none;
+  box-shadow:0 10px 24px rgba(15,35,65,.16);
+}
+.l-battery .battery-photo{
+  width:150%;height:100%;left:-25%;top:0;
+  object-fit:contain;object-position:center;
+}
+.l-battery .bt-label,.l-battery .bt-plus,.l-battery .bt-minus,.l-battery .bt-strip{display:none}
+.l-board{
+  overflow:hidden;border:0;border-radius:20px;background-image:none;
+  box-shadow:none;
+}
+.l-board .board-photo{
+  width:180%;height:56%;left:-40%;top:22%;
+  object-fit:contain;object-position:center;
+  transform:rotate(90deg);
+  filter:drop-shadow(0 10px 14px rgba(10,25,45,.18));
+}
+.l-board .chip,.l-board .lens,.l-board .port{display:none}
+.l-display{
+  overflow:hidden;border:0;border-radius:34px;background-image:none;
+  box-shadow:0 12px 30px rgba(15,35,65,.14);
+}
+.l-display .display-photo{
+  width:200%;height:100%;left:-100%;top:0;
+  object-fit:cover;object-position:center;
+}
+.l-display .screen{display:none}
+.l-glass{
+  overflow:hidden;border:1px solid rgba(255,255,255,.7);
+  border-radius:36px;background-image:none;
+  box-shadow:0 8px 26px rgba(15,35,65,.12),inset 0 0 0 1px rgba(255,255,255,.45);
+}
+.l-glass .glass-photo{
+  width:200%;height:100%;left:0;top:0;
+  object-fit:cover;object-position:center;
+}
+.l-glass .notch{display:none}
+.l-glass .crack{opacity:.16;filter:blur(.25px)}
+.layer.on::after{
+  border-color:#19bfff;
+  box-shadow:0 0 24px rgba(25,191,255,.35),inset 0 0 12px rgba(25,191,255,.12);
+}
+@media(max-width:700px){
+  .stage-sticky{
+    background:
+      radial-gradient(70% 40% at 70% 52%,rgba(47,139,255,.13),transparent 75%),
+      linear-gradient(rgba(23,105,224,.045) 1px,transparent 1px) 0 0/36px 36px,
+      linear-gradient(90deg,rgba(23,105,224,.045) 1px,transparent 1px) 0 0/36px 36px,
+      #f3f6fa;
+  }
+}
