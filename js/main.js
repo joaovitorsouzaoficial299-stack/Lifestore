@@ -12,6 +12,66 @@
   const DIAS = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
   const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 
+
+  /* ---------- Fundo interativo leve (canvas) ---------- */
+  const ambientCanvas = $('#ambientCanvas');
+  const ambientCtx = ambientCanvas && ambientCanvas.getContext('2d', { alpha: true });
+  if (ambientCanvas && ambientCtx) {
+    let aw = 0, ah = 0, adpr = 1, particles = [], pointer = { x: .72, y: .28 }, targetPointer = { x: .72, y: .28 };
+    const lowMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function resizeAmbient() {
+      adpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      aw = window.innerWidth; ah = window.innerHeight;
+      ambientCanvas.width = Math.round(aw * adpr); ambientCanvas.height = Math.round(ah * adpr);
+      ambientCtx.setTransform(adpr, 0, 0, adpr, 0, 0);
+      const count = Math.max(18, Math.min(54, Math.round(aw / 25)));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * aw, y: Math.random() * ah,
+        vx: (Math.random() - .5) * .16, vy: (Math.random() - .5) * .16,
+        r: .7 + Math.random() * 1.5, phase: Math.random() * Math.PI * 2
+      }));
+      drawAmbient(0);
+    }
+    function drawAmbient(time = 0) {
+      ambientCtx.clearRect(0, 0, aw, ah);
+      pointer.x += (targetPointer.x - pointer.x) * .035;
+      pointer.y += (targetPointer.y - pointer.y) * .035;
+      const px = pointer.x * aw, py = pointer.y * ah;
+      const glow = ambientCtx.createRadialGradient(px, py, 0, px, py, Math.max(aw, ah) * .62);
+      glow.addColorStop(0, 'rgba(75,230,210,.075)');
+      glow.addColorStop(.36, 'rgba(91,124,255,.055)');
+      glow.addColorStop(1, 'rgba(7,10,18,0)');
+      ambientCtx.fillStyle = glow; ambientCtx.fillRect(0, 0, aw, ah);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        if (!lowMotion) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -8) p.x = aw + 8; if (p.x > aw + 8) p.x = -8;
+          if (p.y < -8) p.y = ah + 8; if (p.y > ah + 8) p.y = -8;
+        }
+        const dx = p.x - px, dy = p.y - py, dist = Math.hypot(dx, dy);
+        if (dist < 170) {
+          ambientCtx.beginPath(); ambientCtx.moveTo(p.x, p.y);
+          ambientCtx.lineTo(px + dx * .25, py + dy * .25);
+          ambientCtx.strokeStyle = `rgba(91,124,255,${(.12 * (1 - dist / 170)).toFixed(3)})`;
+          ambientCtx.lineWidth = 1; ambientCtx.stroke();
+        }
+        ambientCtx.beginPath();
+        ambientCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ambientCtx.fillStyle = i % 4 === 0 ? 'rgba(75,230,210,.45)' : 'rgba(157,177,255,.34)';
+        ambientCtx.fill();
+      }
+      if (!lowMotion) requestAnimationFrame(drawAmbient);
+    }
+    window.addEventListener('pointermove', e => {
+      targetPointer.x = clamp(e.clientX / Math.max(1, aw)); targetPointer.y = clamp(e.clientY / Math.max(1, ah));
+      if (lowMotion) drawAmbient(0);
+    }, { passive: true });
+    window.addEventListener('resize', resizeAmbient, { passive: true });
+    resizeAmbient();
+    if (!lowMotion) requestAnimationFrame(drawAmbient);
+  }
+
   /* ---------- Textos e links ---------- */
   document.title = `${S.nome} | ${S.titulo}`;
   $$('[data-site]').forEach(e => { e.textContent = S[e.dataset.site] ?? ''; });
@@ -107,12 +167,13 @@
   /* ---------- Scroll reveal suave, respeitando acessibilidade ---------- */
   const revealTargets = $('.sec-head, .svc li, .diff li, .proc li, .quotes blockquote, #faq details, .product-card, .contact-in > div, .shop-bottom');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let revealObserver = null;
   if ('IntersectionObserver' in window && !reduceMotion) {
     revealTargets.forEach((el, i) => {
       el.classList.add('reveal');
       if (el.classList.contains('product-card')) el.style.setProperty('--delay', (i % 3) * 70 + 'ms');
     });
-    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
     }), { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
     revealTargets.forEach(el => revealObserver.observe(el));
@@ -133,6 +194,7 @@
   });
   $('#svcList').addEventListener('click', e => { const b = e.target.closest('.orcar'); if (b) setQuote(tab, b.dataset.n); });
   renderSvc();
+  if (revealObserver) $('.svc li', $('#svcList')).forEach(el => { el.classList.add('reveal'); revealObserver.observe(el); });
 
   /* ---------- Processo (linha que avança com a rolagem) ---------- */
   $('#proc').innerHTML = S.processo.map(p => `<li><h3>${p.t}</h3><p>${p.d}</p></li>`).join('');
