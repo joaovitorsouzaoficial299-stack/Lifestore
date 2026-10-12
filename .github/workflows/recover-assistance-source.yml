@@ -24,6 +24,8 @@ jobs:
         run: |
           test -f assistencia.zip
           unzip -o assistencia.zip -d .
+          cp assistencia/index.html .
+          cp -R assistencia/assets assistencia/css assistencia/js .
           test -f index.html
           test -f css/style.css
           test -f js/main.js
